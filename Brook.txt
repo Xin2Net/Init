@@ -1,3 +1,5 @@
 brook://wsserver?password=racevpnbjl21Xpa&wsserver=ws%3a%2f%2f165.22.28.52%3a443
 brook://wsserver?password=racevpn1THOjWQ9&wsserver=ws%3a%2f%2f64.227.75.227%3a443
 brook://wsserver?password=racevpnNfgMMUl8&wsserver=ws%3a%2f%2f46.101.89.88%3a443
+brook://wsserver?password=racevpnUY4hwOKJ&wsserver=ws%3a%2f%2f67.205.158.218%3a443
+brook://wsserver?password=racevpnaDQupeNy&wsserver=ws%3a%2f%2f143.110.208.9%3a443
