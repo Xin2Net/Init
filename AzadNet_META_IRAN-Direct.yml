@@ -1,20 +1,65 @@
-port: 7890
-socks-port: 7891
+mixed-port: 7890
 allow-lan: true
-mode: Rule
-external-controller: 0.0.0.0:9090
-log-level: debug
-dns:
-  enabled: true
-  nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-  fallback:
-    - 8.8.8.8
-    - 8.8.4.4
-    - tls://1.0.0.1:853
-    - tls://dns.google:853
+tcp-concurrent: true
+enable-process: true
+find-process-mode: always
+global-client-fingerprint: chrome
+geodata-mode: true
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+mode: rule
+log-level: error ## silent/error/warning/info/debug
+ipv6: true
+external-controller: 127.0.0.1:9090
+profile:
+  store-selected: false ## It's better to default to "auto" every time it restarts.
+  store-fake-ip: true
 
+dns:
+  enable: true
+  #listen: 127.0.0.1:53 ## Or 0.0.0.0:53 for LAN.
+  ipv6: true
+  prefer-h3: true
+  default-nameserver: 
+    - '127.0.0.1'
+    - '1.1.1.1'
+    - '8.8.8.8'
+    - '217.218.155.155'
+  enhanced-mode: fake-ip
+  use-hosts: true
+  nameserver:
+    - '127.0.0.1'
+    - '217.218.155.155'
+    - '8.8.8.8'
+    - '1.1.1.1'
+  fallback:
+    - "https://1.1.1.1/dns-query"
+    - "https://8.8.8.8/dns-query"
+  fallback-filter:
+    geoip: false
+    ipcidr:
+      - '0.0.0.0/8'
+      - '10.0.0.0/8'
+      - '100.64.0.0/10'
+      - '127.0.0.0/8'
+      - '169.254.0.0/16'
+      - '172.16.0.0/12'
+      - '192.0.0.0/24'
+      - '192.0.2.0/24'
+      - '192.88.99.0/24'
+      - '192.168.0.0/16'
+      - '198.18.0.0/15'
+      - '198.51.100.0/24'
+      - '203.0.113.0/24'
+      - '224.0.0.0/3'
+      - '240.0.0.0/4'
+      - '::1/128'
+      - '64:ff9b:1::/48'
+      - 'fc00::/7'
+      - 'fe80::/10'
+      
 proxies:
   - {"name":"🇦🇲AM(AzadNet.t.me)","type":"vmess","server":"185.162.228.4","port":80,"cipher":"auto","uuid":"44c467a9-8f0d-41a5-f00b-86569753e5b0","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"b3.iraniancp.autos"}}}
   - {"name":"🇦🇺AU(AzadNet.t.me)_1","type":"trojan","server":"103.136.146.143","port":10011,"udp":true,"password":"2af31107-e577-4995-8247-e8a57855e90b","sni":"xn--vck0bp0g2a4h.xn--ick8a8i.xn--tckwe","skip-cert-verify":true,"network":"tcp"}
@@ -443,6 +488,7 @@ proxies:
   - {"name":"🇮🇳IN(AzadNet.t.me)_22","type":"trojan","server":"152.67.190.183","port":443,"udp":true,"password":"006baa3f-4bc3-4915-b60d-c8c5dae11a11","sni":"152.67.190.183","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇮🇳IN(AzadNet.t.me)_23","type":"trojan","server":"152.67.190.183","port":443,"udp":true,"password":"006baa3f-4bc3-4915-b60d-c8c5dae11a11","sni":"152.67.190.183","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇮🇳IN(AzadNet.t.me)_24","type":"trojan","server":"152.67.190.183","port":443,"udp":true,"password":"006baa3f-4bc3-4915-b60d-c8c5dae11a11","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"🇮🇷IR(AzadNet.t.me)","type":"vless","server":"bugfr8v.mlgolden.site","port":443,"uuid":"2905d215-4274-4e66-b461-2df41b37c292","tls":true,"servername":"bugfr8v.mlgolden.site","network":"ws","ws-opts":{"path":"/"}}
   - {"name":"🇮🇹IT(AzadNet.t.me)_1","type":"trojan","server":"129.152.28.100","port":443,"udp":true,"password":"9e4fa728-3d7d-4371-8053-f175c019ef2c","sni":"yangleduo.cf","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇮🇹IT(AzadNet.t.me)_2","type":"trojan","server":"yangleduo.cf","port":443,"udp":true,"password":"9e4fa728-3d7d-4371-8053-f175c019ef2c","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇮🇹IT(AzadNet.t.me)_3","type":"trojan","server":"129.152.28.100","port":443,"udp":true,"password":"9e4fa728-3d7d-4371-8053-f175c019ef2c","sni":"yangleduo.cf","skip-cert-verify":true,"network":"tcp"}
@@ -758,6 +804,7 @@ proxies:
   - {"name":"🇷🇺RU(AzadNet.t.me)_9","type":"trojan","server":"45.130.146.97","port":443,"udp":true,"password":"1d0a80ca-0f96-4016-ac51-c284dedd28a1","sni":"insaneguo2333.top","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇷🇺RU(AzadNet.t.me)_10","type":"trojan","server":"insaneguo2333.top","port":443,"udp":true,"password":"1d0a80ca-0f96-4016-ac51-c284dedd28a1","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇷🇺RU(AzadNet.t.me)_11","type":"trojan","server":"45.130.146.97","port":443,"udp":true,"password":"1d0a80ca-0f96-4016-ac51-c284dedd28a1","sni":"insaneguo2333.top","skip-cert-verify":true,"network":"tcp"}
+  - {"name":"🇷🇺RU(AzadNet.t.me)_12","type":"vless","server":"mciv2rayngconfi.ddns.net","port":2053,"uuid":"0c18270b-7e1f-481c-87cc-9d81488b9db3","tls":true,"servername":"fdf.kotala.cloud","network":"grpc"}
   - {"name":"🇸🇬SG(AzadNet.t.me)_1","type":"trojan","server":"sg.liangyuandian.top","port":443,"udp":true,"password":"b341f309-7e2b-45c4-a316-9e23037e3711","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇸🇬SG(AzadNet.t.me)_2","type":"trojan","server":"ca.liangyuandian.top","port":443,"udp":true,"password":"58dcd460-65df-47b1-b062-517df30bef29","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇸🇬SG(AzadNet.t.me)_3","type":"trojan","server":"ap.stablize.top","port":443,"udp":true,"password":"1bf16b43-0ad5-4512-a0e8-34bb8966278e","skip-cert-verify":true,"network":"tcp"}
@@ -1434,11 +1481,16 @@ proxies:
   - {"name":"🇺🇸US(AzadNet.t.me)_445","type":"vmess","server":"45.79.72.133","port":80,"cipher":"auto","uuid":"5d667691-c393-4de9-8962-9bea18bfca9e","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/images","headers":{"host":"shoutingtoutiao3.10010.com"}}}
   - {"name":"🇺🇸US(AzadNet.t.me)_446","type":"vmess","server":"45.79.72.133","port":80,"cipher":"auto","uuid":"5d667691-c393-4de9-8962-9bea18bfca9e","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/images"}}
   - {"name":"🇺🇸US(AzadNet.t.me)_447","type":"vmess","server":"45.79.72.133","port":80,"cipher":"auto","uuid":"5d667691-c393-4de9-8962-9bea18bfca9e","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/images"}}
+  - {"name":"🇺🇸US(AzadNet.t.me)_448","type":"vless","server":"cdnjs.com","port":443,"uuid":"fa2441c0-6f63-458b-977b-16abb27a7c67","tls":true,"servername":"cdnca1.digisport.shop","network":"ws","ws-opts":{"path":"/16882"}}
+  - {"name":"🇺🇸US(AzadNet.t.me)_449","type":"vless","server":"cdnjs.com","port":443,"uuid":"761977d0-fdec-4511-a11f-d82234222a6f","tls":true,"servername":"cdntr2.digisport.shop","network":"ws","ws-opts":{"path":"/13863"}}
+  - {"name":"🇺🇸US(AzadNet.t.me)_450","type":"vless","server":"cdnjs.com","port":443,"uuid":"5e5a6afb-f8e8-420a-d20f-d41f3d7eeb70","tls":true,"servername":"cdnca2.digisport.shop","network":"ws","ws-opts":{"path":"/19901"}}
+  - {"name":"🇺🇸US(AzadNet.t.me)_451","type":"vless","server":"cdnjs.com","port":443,"uuid":"4884033c-5e97-4276-b849-0eed9238e516","tls":true,"servername":"cdntr1.digisport.shop","network":"ws","ws-opts":{"path":"/15364"}}
   - {"name":"🇺🇸US(AzadNet.t.me)_452","type":"vmess","server":"45.79.115.135","port":8443,"cipher":"auto","uuid":"9442ea5a-0c72-4f16-a591-9bec0d2ace7c","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇺🇸US(AzadNet.t.me)_453","type":"vmess","server":"45.79.115.135","port":8443,"cipher":"auto","uuid":"9442ea5a-0c72-4f16-a591-9bec0d2ace7c","alterId":0,"tls":false,"skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇺🇸US(AzadNet.t.me)_454","type":"vmess","server":"45.79.72.133","port":80,"cipher":"auto","uuid":"5d667691-c393-4de9-8962-9bea18bfca9e","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/images","headers":{"host":"shoutingtoutiao3.10010.com"}}}
   - {"name":"🇺🇸US(AzadNet.t.me)_455","type":"vmess","server":"45.79.72.133","port":80,"cipher":"auto","uuid":"5d667691-c393-4de9-8962-9bea18bfca9e","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/images"}}
   - {"name":"🇺🇸US(AzadNet.t.me)_456","type":"vmess","server":"45.79.72.133","port":80,"cipher":"auto","uuid":"5d667691-c393-4de9-8962-9bea18bfca9e","alterId":0,"tls":false,"skip-cert-verify":true,"network":"ws","ws-opts":{"path":"/images"}}
+  - {"name":"🇸🇪SE(AzadNet.t.me)","type":"vless","server":"cp3.independenttherapeutics.com","port":8443,"uuid":"de17dda9-60eb-4804-9b75-164299746e4f","tls":true,"servername":"cp3.independenttherapeutics.com","network":"ws","ws-opts":{"path":"/"}}
   - {"name":"🇺🇸US(AzadNet.t.me)_457","type":"trojan","server":"us.blazeppn.info","port":443,"udp":true,"password":"xxoo","sni":"marzfun.ir","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇺🇸US(AzadNet.t.me)_458","type":"trojan","server":"us.blazeppn.info","port":443,"udp":true,"password":"xxoo","sni":"marzfun.ir","skip-cert-verify":true,"network":"tcp"}
   - {"name":"🇺🇸US(AzadNet.t.me)_459","type":"trojan","server":"138.124.183.226","port":443,"udp":true,"password":"xxoo","skip-cert-verify":true,"network":"tcp"}
@@ -1933,6 +1985,7 @@ proxy-groups:
       - 🇮🇳IN(AzadNet.t.me)_22
       - 🇮🇳IN(AzadNet.t.me)_23
       - 🇮🇳IN(AzadNet.t.me)_24
+      - 🇮🇷IR(AzadNet.t.me)
       - 🇮🇹IT(AzadNet.t.me)_1
       - 🇮🇹IT(AzadNet.t.me)_2
       - 🇮🇹IT(AzadNet.t.me)_3
@@ -2248,6 +2301,8 @@ proxy-groups:
       - 🇷🇺RU(AzadNet.t.me)_9
       - 🇷🇺RU(AzadNet.t.me)_10
       - 🇷🇺RU(AzadNet.t.me)_11
+      - 🇷🇺RU(AzadNet.t.me)_12
+      - 🇸🇪SE(AzadNet.t.me)
       - 🇸🇬SG(AzadNet.t.me)_1
       - 🇸🇬SG(AzadNet.t.me)_2
       - 🇸🇬SG(AzadNet.t.me)_3
@@ -2478,14 +2533,6 @@ proxy-groups:
       - 🇹🇼TW(AzadNet.t.me)_84
       - 🇹🇼TW(AzadNet.t.me)_85
       - 🇺🇸US(AzadNet.t.me)_1
-      - 🇺🇸US(AzadNet.t.me)_2
-      - 🇺🇸US(AzadNet.t.me)_3
-      - 🇺🇸US(AzadNet.t.me)_4
-      - 🇺🇸US(AzadNet.t.me)_5
-      - 🇺🇸US(AzadNet.t.me)_6
-      - 🇺🇸US(AzadNet.t.me)_7
-      - 🇺🇸US(AzadNet.t.me)_8
-      - 🇺🇸US(AzadNet.t.me)_9
       - 🇺🇸US(AzadNet.t.me)_10
       - 🇺🇸US(AzadNet.t.me)_100
       - 🇺🇸US(AzadNet.t.me)_101
@@ -2596,6 +2643,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_197
       - 🇺🇸US(AzadNet.t.me)_198
       - 🇺🇸US(AzadNet.t.me)_199
+      - 🇺🇸US(AzadNet.t.me)_2
       - 🇺🇸US(AzadNet.t.me)_20
       - 🇺🇸US(AzadNet.t.me)_200
       - 🇺🇸US(AzadNet.t.me)_201
@@ -2706,6 +2754,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_297
       - 🇺🇸US(AzadNet.t.me)_298
       - 🇺🇸US(AzadNet.t.me)_299
+      - 🇺🇸US(AzadNet.t.me)_3
       - 🇺🇸US(AzadNet.t.me)_30
       - 🇺🇸US(AzadNet.t.me)_300
       - 🇺🇸US(AzadNet.t.me)_301
@@ -2816,6 +2865,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_397
       - 🇺🇸US(AzadNet.t.me)_398
       - 🇺🇸US(AzadNet.t.me)_399
+      - 🇺🇸US(AzadNet.t.me)_4
       - 🇺🇸US(AzadNet.t.me)_40
       - 🇺🇸US(AzadNet.t.me)_400
       - 🇺🇸US(AzadNet.t.me)_401
@@ -2869,7 +2919,11 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_445
       - 🇺🇸US(AzadNet.t.me)_446
       - 🇺🇸US(AzadNet.t.me)_447
+      - 🇺🇸US(AzadNet.t.me)_448
+      - 🇺🇸US(AzadNet.t.me)_449
       - 🇺🇸US(AzadNet.t.me)_45
+      - 🇺🇸US(AzadNet.t.me)_450
+      - 🇺🇸US(AzadNet.t.me)_451
       - 🇺🇸US(AzadNet.t.me)_452
       - 🇺🇸US(AzadNet.t.me)_453
       - 🇺🇸US(AzadNet.t.me)_454
@@ -2903,6 +2957,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_48
       - 🇺🇸US(AzadNet.t.me)_480
       - 🇺🇸US(AzadNet.t.me)_49
+      - 🇺🇸US(AzadNet.t.me)_5
       - 🇺🇸US(AzadNet.t.me)_50
       - 🇺🇸US(AzadNet.t.me)_51
       - 🇺🇸US(AzadNet.t.me)_52
@@ -2913,6 +2968,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_57
       - 🇺🇸US(AzadNet.t.me)_58
       - 🇺🇸US(AzadNet.t.me)_59
+      - 🇺🇸US(AzadNet.t.me)_6
       - 🇺🇸US(AzadNet.t.me)_60
       - 🇺🇸US(AzadNet.t.me)_61
       - 🇺🇸US(AzadNet.t.me)_62
@@ -2923,6 +2979,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_67
       - 🇺🇸US(AzadNet.t.me)_68
       - 🇺🇸US(AzadNet.t.me)_69
+      - 🇺🇸US(AzadNet.t.me)_7
       - 🇺🇸US(AzadNet.t.me)_70
       - 🇺🇸US(AzadNet.t.me)_71
       - 🇺🇸US(AzadNet.t.me)_72
@@ -2933,6 +2990,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_77
       - 🇺🇸US(AzadNet.t.me)_78
       - 🇺🇸US(AzadNet.t.me)_79
+      - 🇺🇸US(AzadNet.t.me)_8
       - 🇺🇸US(AzadNet.t.me)_80
       - 🇺🇸US(AzadNet.t.me)_81
       - 🇺🇸US(AzadNet.t.me)_82
@@ -2943,6 +3001,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_87
       - 🇺🇸US(AzadNet.t.me)_88
       - 🇺🇸US(AzadNet.t.me)_89
+      - 🇺🇸US(AzadNet.t.me)_9
       - 🇺🇸US(AzadNet.t.me)_90
       - 🇺🇸US(AzadNet.t.me)_91
       - 🇺🇸US(AzadNet.t.me)_92
@@ -3423,6 +3482,7 @@ proxy-groups:
       - 🇮🇳IN(AzadNet.t.me)_22
       - 🇮🇳IN(AzadNet.t.me)_23
       - 🇮🇳IN(AzadNet.t.me)_24
+      - 🇮🇷IR(AzadNet.t.me)
       - 🇮🇹IT(AzadNet.t.me)_1
       - 🇮🇹IT(AzadNet.t.me)_2
       - 🇮🇹IT(AzadNet.t.me)_3
@@ -3738,6 +3798,8 @@ proxy-groups:
       - 🇷🇺RU(AzadNet.t.me)_9
       - 🇷🇺RU(AzadNet.t.me)_10
       - 🇷🇺RU(AzadNet.t.me)_11
+      - 🇷🇺RU(AzadNet.t.me)_12
+      - 🇸🇪SE(AzadNet.t.me)
       - 🇸🇬SG(AzadNet.t.me)_1
       - 🇸🇬SG(AzadNet.t.me)_2
       - 🇸🇬SG(AzadNet.t.me)_3
@@ -3968,14 +4030,6 @@ proxy-groups:
       - 🇹🇼TW(AzadNet.t.me)_84
       - 🇹🇼TW(AzadNet.t.me)_85
       - 🇺🇸US(AzadNet.t.me)_1
-      - 🇺🇸US(AzadNet.t.me)_2
-      - 🇺🇸US(AzadNet.t.me)_3
-      - 🇺🇸US(AzadNet.t.me)_4
-      - 🇺🇸US(AzadNet.t.me)_5
-      - 🇺🇸US(AzadNet.t.me)_6
-      - 🇺🇸US(AzadNet.t.me)_7
-      - 🇺🇸US(AzadNet.t.me)_8
-      - 🇺🇸US(AzadNet.t.me)_9
       - 🇺🇸US(AzadNet.t.me)_10
       - 🇺🇸US(AzadNet.t.me)_100
       - 🇺🇸US(AzadNet.t.me)_101
@@ -4086,6 +4140,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_197
       - 🇺🇸US(AzadNet.t.me)_198
       - 🇺🇸US(AzadNet.t.me)_199
+      - 🇺🇸US(AzadNet.t.me)_2
       - 🇺🇸US(AzadNet.t.me)_20
       - 🇺🇸US(AzadNet.t.me)_200
       - 🇺🇸US(AzadNet.t.me)_201
@@ -4196,6 +4251,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_297
       - 🇺🇸US(AzadNet.t.me)_298
       - 🇺🇸US(AzadNet.t.me)_299
+      - 🇺🇸US(AzadNet.t.me)_3
       - 🇺🇸US(AzadNet.t.me)_30
       - 🇺🇸US(AzadNet.t.me)_300
       - 🇺🇸US(AzadNet.t.me)_301
@@ -4306,6 +4362,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_397
       - 🇺🇸US(AzadNet.t.me)_398
       - 🇺🇸US(AzadNet.t.me)_399
+      - 🇺🇸US(AzadNet.t.me)_4
       - 🇺🇸US(AzadNet.t.me)_40
       - 🇺🇸US(AzadNet.t.me)_400
       - 🇺🇸US(AzadNet.t.me)_401
@@ -4359,7 +4416,11 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_445
       - 🇺🇸US(AzadNet.t.me)_446
       - 🇺🇸US(AzadNet.t.me)_447
+      - 🇺🇸US(AzadNet.t.me)_448
+      - 🇺🇸US(AzadNet.t.me)_449
       - 🇺🇸US(AzadNet.t.me)_45
+      - 🇺🇸US(AzadNet.t.me)_450
+      - 🇺🇸US(AzadNet.t.me)_451
       - 🇺🇸US(AzadNet.t.me)_452
       - 🇺🇸US(AzadNet.t.me)_453
       - 🇺🇸US(AzadNet.t.me)_454
@@ -4393,6 +4454,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_48
       - 🇺🇸US(AzadNet.t.me)_480
       - 🇺🇸US(AzadNet.t.me)_49
+      - 🇺🇸US(AzadNet.t.me)_5
       - 🇺🇸US(AzadNet.t.me)_50
       - 🇺🇸US(AzadNet.t.me)_51
       - 🇺🇸US(AzadNet.t.me)_52
@@ -4403,6 +4465,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_57
       - 🇺🇸US(AzadNet.t.me)_58
       - 🇺🇸US(AzadNet.t.me)_59
+      - 🇺🇸US(AzadNet.t.me)_6
       - 🇺🇸US(AzadNet.t.me)_60
       - 🇺🇸US(AzadNet.t.me)_61
       - 🇺🇸US(AzadNet.t.me)_62
@@ -4413,6 +4476,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_67
       - 🇺🇸US(AzadNet.t.me)_68
       - 🇺🇸US(AzadNet.t.me)_69
+      - 🇺🇸US(AzadNet.t.me)_7
       - 🇺🇸US(AzadNet.t.me)_70
       - 🇺🇸US(AzadNet.t.me)_71
       - 🇺🇸US(AzadNet.t.me)_72
@@ -4423,6 +4487,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_77
       - 🇺🇸US(AzadNet.t.me)_78
       - 🇺🇸US(AzadNet.t.me)_79
+      - 🇺🇸US(AzadNet.t.me)_8
       - 🇺🇸US(AzadNet.t.me)_80
       - 🇺🇸US(AzadNet.t.me)_81
       - 🇺🇸US(AzadNet.t.me)_82
@@ -4433,6 +4498,7 @@ proxy-groups:
       - 🇺🇸US(AzadNet.t.me)_87
       - 🇺🇸US(AzadNet.t.me)_88
       - 🇺🇸US(AzadNet.t.me)_89
+      - 🇺🇸US(AzadNet.t.me)_9
       - 🇺🇸US(AzadNet.t.me)_90
       - 🇺🇸US(AzadNet.t.me)_91
       - 🇺🇸US(AzadNet.t.me)_92
@@ -4479,7 +4545,7 @@ proxy-groups:
       - 🇻🇳VN(AzadNet.t.me)_34
       - 🇻🇳VN(AzadNet.t.me)_35
       - 🇻🇳VN(AzadNet.t.me)_36
-
+      
   - name: ⛔Direct
     type: select
     proxies:
@@ -4489,6 +4555,56 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
+
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./ruleset/reject.yaml
+    interval: 432000
+  applications:
+    type: http
+    behavior: classical
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
+    path: ./ruleset/applications.yaml
+    interval: 432000
+  iran:
+    type: http
+    behavior: classical
+    url: https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules.yaml
+    path: ./ruleset/iran.yaml
+    interval: 432000
+  ADs:
+    type: http
+    behavior: classical
+    url: https://github.com/farrokhi/adblock-iran/raw/master/filter.txt #https://github.com/farrokhi/adblock-iran/raw/master/pihole.txt
+    path: ./ruleset/filter.txt
+    interval: 432000
+  ADs2:
+    type: http
+    behavior: classical
+    url: https://github.com/farrokhi/adblock-iran/raw/master/pihole.txt
+    path: ./ruleset/pihole.txt
+    interval: 432000
+  Trackers:
+    type: http
+    behavior: classical
+    url: https://github.com/farrokhi/adblock-iran/raw/master/additional-trackers.txt
+    path: ./ruleset/additional-trackers.txt
+    interval: 432000
+
 rules:
- - GEOIP,IR,⛔Direct
- - MATCH,🔰 All Proxies
+  - DOMAIN-SUFFIX,.ir,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN,yacd.metacubex.one,DIRECT ## Yet Another Clash Dashbord for Clash.Meta
+  - DOMAIN,clash.metacubex.one,DIRECT ## Razord
+  - RULE-SET,applications,DIRECT
+  - RULE-SET,reject,REJECT
+  - RULE-SET,ADs,REJECT
+  - GEOSITE,category-ads-all,REJECT ## Rejects advertisements.
+  - GEOSITE,category-ir,DIRECT
+  - GEOIP,private,DIRECT,no-resolve ## Loopback and LAN IPs
+  - GEOIP,IR,DIRECT
+  - MATCH ,🔰 All Proxies,🔥 Auto(Best ping)
