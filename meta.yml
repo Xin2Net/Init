@@ -161,8 +161,8 @@ proxy-providers:
       enable: true
       interval: 3600
       lazy: true
-      url: "http://detectportal.firefox.com/success.txt"
-      #url: "http://cp.cloudflare.com"
+      #url: "http://detectportal.firefox.com/success.txt"
+      url: "http://cp.cloudflare.com"
       #url: "http://clients3.google.com/generate_204
  sport:
     type: http
@@ -173,8 +173,8 @@ proxy-providers:
       enable: true
       interval: 3600
       lazy: true
-      url: "http://detectportal.firefox.com/success.txt"
-      #url: "http://cp.cloudflare.com"
+      #url: "http://detectportal.firefox.com/success.txt"
+      url: "http://cp.cloudflare.com"
       ##url: "http://detectportal.firefox.com/success.txt"
  cyber:
     type: http
@@ -185,8 +185,8 @@ proxy-providers:
       enable: true
       interval: 3600
       lazy: true
-      url: "http://detectportal.firefox.com/success.txt"
-      #url: "http://cp.cloudflare.com"                                        #Mirror test
+      #url: "http://detectportal.firefox.com/success.txt"
+      url: "http://cp.cloudflare.com"                                        #Mirror test
       ##url: "http://clients3.google.com/generate_204         #Mirror test
  xin2net:
     type: http
@@ -197,8 +197,8 @@ proxy-providers:
       enable: true
       interval: 3600
       lazy: true
-      url: "http://detectportal.firefox.com/success.txt"
-      #url: "http://cp.cloudflare.com"                                        #Mirror test
+      #url: "http://detectportal.firefox.com/success.txt"
+      url: "http://cp.cloudflare.com"                                        #Mirror test
       ##url: "http://clients3.google.com/generate_204         #Mirror test
 
 rule-providers:
