@@ -129,6 +129,7 @@ proxy-groups:
     - saman
     - sport
     - cyber
+    - xin2net
 
 - name: auto
   type: url-test
@@ -138,7 +139,8 @@ proxy-groups:
     - saman
     - sport
     - cyber
-
+    - xin2net
+    
 proxy-providers:
   #local:
     #type: file
@@ -179,6 +181,18 @@ proxy-providers:
     url: "https://raw.githubusercontent.com/IranianCypherpunks/sub/main/config"
     interval: 86400
     path: ./providers/cyber.yaml
+    health-check:
+      enable: true
+      interval: 3600
+      lazy: true
+      url: "http://detectportal.firefox.com/success.txt"
+      #url: "http://cp.cloudflare.com"                                        #Mirror test
+      ##url: "http://clients3.google.com/generate_204         #Mirror test
+ xin2net:
+    type: http
+    url: "https://raw.githubusercontent.com/Xin2Net/Init/main/ClashMeta.yml"
+    interval: 86400
+    path: ./providers/xin2net.yaml
     health-check:
       enable: true
       interval: 3600
