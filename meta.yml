@@ -1,0 +1,240 @@
+mixed-port: 7890
+allow-lan: true
+tcp-concurrent: true
+enable-process: true
+find-process-mode: always
+global-client-fingerprint: chrome
+geodata-mode: true
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+mode: rule
+log-level: error ## silent/error/warning/info/debug
+ipv6: true
+external-controller: 127.0.0.1:9090
+profile:
+  store-selected: false ## It's better to default to "auto" every time it restarts.
+  store-fake-ip: true
+  tracing: false
+sniffer: 
+  enable: true 
+  sniffing: 
+    - http 
+    - tls 
+ 
+tun: 
+  enable: true 
+  stack: system # or gvisor 
+  dns-hijack:
+    - any:53
+  auto-redir: true
+  auto-route: true
+  auto-detect-interface: true
+dns:
+  enable: true
+  #listen: 127.0.0.1:53 ## Or 0.0.0.0:53 for LAN.
+  ipv6: true
+  prefer-h3: true
+  default-nameserver: 
+    - '127.0.0.1'
+    - '1.1.1.1'
+    - '8.8.8.8'
+    - '217.218.155.155'
+  enhanced-mode: fake-ip
+  use-hosts: true
+  nameserver:
+    - '127.0.0.1'
+    - '217.218.155.155'
+    - '8.8.4.4'
+    - '1.0.0.1'
+  fake-ip-filter:
+    - "*.lan"
+    - stun.*.*.*
+    - stun.*.*
+    - time.windows.com
+    - time.nist.gov
+    - time.apple.com
+    - time.asia.apple.com
+    - "*.openwrt.pool.ntp.org"
+    - pool.ntp.org
+    - ntp.ubuntu.com
+    - time1.apple.com
+    - time2.apple.com
+    - time3.apple.com
+    - time4.apple.com
+    - time5.apple.com
+    - time6.apple.com
+    - time7.apple.com
+    - time1.google.com
+    - time2.google.com
+    - time3.google.com
+    - time4.google.com
+    - api.joox.com
+    - joox.com
+    - "*.xiami.com"
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - '+.xboxlive.com'
+    - "*.*.stun.playstation.net"
+    - xbox.*.*.microsoft.com
+    - "*.ipv6.microsoft.com"
+    - speedtest.cros.wr.pvp.net'
+  fallback:
+    - '1.0.0.1'
+    - '8.8.4.4'
+  fallback-filter:
+    geoip: true
+    geoip-code: IR
+    ipcidr:
+      - '0.0.0.0/8'
+      - '10.0.0.0/8'
+      - '100.64.0.0/10'
+      - '127.0.0.0/8'
+      - '169.254.0.0/16'
+      - '172.16.0.0/12'
+      - '192.0.0.0/24'
+      - '192.0.2.0/24'
+      - '192.88.99.0/24'
+      - '192.168.0.0/16'
+      - '198.18.0.0/15'
+      - '198.51.100.0/24'
+      - '203.0.113.0/24'
+      - '224.0.0.0/3'
+      - '240.0.0.0/4'
+      - '::1/128'
+      - '64:ff9b:1::/48'
+      - 'fc00::/7'
+      - 'fe80::/10'
+    domain:
+    - +.google.com
+    - +.facebook.com
+    - +.youtube.com
+    - +.gvt1.com
+    - '+.twitter.com'
+    - '+.bing.com'
+    
+proxy-groups:
+
+- name: global
+  type: select
+  proxies:
+    - auto
+    - manual
+
+- name: manual
+  type: select
+  use:
+    #- local
+    - saman
+    - sport
+    - cyber
+
+- name: auto
+  type: url-test
+  #filter: "🏁"
+  use:
+    #- local
+    - saman
+    - sport
+    - cyber
+
+proxy-providers:
+  #local:
+    #type: file
+    #path: ./providers/local.yaml ## << Put your custom servers here.
+    #health-check:
+      #enable: true
+      #interval: 3600
+      #lazy: true
+      #url: "http://cdn.jsdelivr.net"
+      ##url: "http://cp.cloudflare.com"
+      ##url: "http://detectportal.firefox.com/success.txt"
+ saman:
+    type: http
+    url: "https://raw.githubusercontent.com/Saman-72/hosts/main/Saman.yaml"
+    interval: 86400
+    path: ./providers/saman.yaml
+    health-check:
+      enable: true
+      interval: 3600
+      lazy: true
+      url: "http://detectportal.firefox.com/success.txt"
+      #url: "http://cp.cloudflare.com"
+      #url: "http://clients3.google.com/generate_204
+ sport:
+    type: http
+    url: "https://sportvpn.github.io/Sport/configs.html"
+    interval: 86400
+    path: ./providers/sport.yaml
+    health-check:
+      enable: true
+      interval: 3600
+      lazy: true
+      url: "http://detectportal.firefox.com/success.txt"
+      #url: "http://cp.cloudflare.com"
+      ##url: "http://detectportal.firefox.com/success.txt"
+ cyber:
+    type: http
+    url: "https://raw.githubusercontent.com/IranianCypherpunks/sub/main/config"
+    interval: 86400
+    path: ./providers/cyber.yaml
+    health-check:
+      enable: true
+      interval: 3600
+      lazy: true
+      url: "http://detectportal.firefox.com/success.txt"
+      #url: "http://cp.cloudflare.com"                                        #Mirror test
+      ##url: "http://clients3.google.com/generate_204         #Mirror test
+
+rule-providers:
+  iran:
+    type: http
+    format: text
+    behavior: domain
+    url: https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/clash_rules.txt
+    path: ./ruleset/iran.txt
+    interval: 432000
+  ADs:
+    type: http
+    format: text
+    behavior: domain
+    url: https://github.com/farrokhi/adblock-iran/raw/master/pihole.txt
+    path: ./ruleset/pihole.txt
+    interval: 432000
+  blocked-sites:
+    behavior: classical
+    interval: 432000
+    path: ./ruleset/blocked.yaml
+    type: http
+    url: https://raw.githubusercontent.com/mahanmi/iran-clash-example/main/clash-rules/blocked-sites.yaml
+  ads-sites:
+    behavior: classical
+    interval: 432000
+    path: ./ruleset/ad-sites.yaml
+    type: http
+    url: https://raw.githubusercontent.com/mahanmi/iran-clash-example/main/clash-rules/ads-sites.yml
+
+rules:
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
+  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
+  - DOMAIN-SUFFIX,lan,DIRECT
+  - DOMAIN-SUFFIX,localhost,DIRECT
+  - DOMAIN-SUFFIX,.ir,DIRECT
+  - DOMAIN-SUFFIX,ir,DIRECT
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  - DOMAIN-KEYWORD,snapp,DIRECT
+  - DOMAIN-KEYWORD,-ir,DIRECT
+  - DOMAIN,yacd.metacubex.one,DIRECT ## Yet Another Clash Dashbord for Clash.Meta
+  - DOMAIN,clash.metacubex.one,DIRECT ## Razord
+  - GEOSITE,category-ir,DIRECT
+  - GEOSITE,category-ads-all,REJECT
+  - GEOIP,private,DIRECT,no-resolve ## Loopback and LAN IPs
+  - GEOIP,IR,DIRECT
+  - RULE-SET,iran,DIRECT
+  - RULE-SET,ADs,REJECT
+  - RULE-SET,ads-sites,REJECT
+  - RULE-SET,blocked-sites,auto
+  - MATCH,global
